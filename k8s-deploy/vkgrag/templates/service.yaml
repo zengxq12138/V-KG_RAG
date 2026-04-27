@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "vkgrag.fullname" . }}
+  labels:
+    {{- include "vkgrag.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.env.PORT }}
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "vkgrag.selectorLabels" . | nindent 4 }}

@@ -1,0 +1,30 @@
+[Unit]
+Description=VKGRAG XYJ Service
+After=network.target
+
+[Service]
+Type=simple
+User=netman
+# Memory settings
+MemoryHigh=8G
+MemoryMax=12G
+
+# Set the VKGRAG installation directory (change this to match your installation path)
+Environment="VKGRAG_HOME=/home/netman/vkgrag-xyj"
+
+# Set Environment to your Python virtual environment
+Environment="PATH=${VKGRAG_HOME}/.venv/bin"
+WorkingDirectory=${VKGRAG_HOME}
+ExecStart=${VKGRAG_HOME}/.venv/bin/vkgrag-server
+# ExecStart=${VKGRAG_HOME}/.venv/bin/vkgrag-gunicorn
+
+# Kill mode require ExecStart must be gunicorn or unvicorn main process
+KillMode=process
+ExecStop=/bin/kill -s TERM $MAINPID
+TimeoutStopSec=60
+
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target

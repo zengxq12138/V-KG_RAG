@@ -1,0 +1,10 @@
+apiVersion: v2
+name: vkgrag
+description: A Helm chart for VKGRAG, an efficient and lightweight RAG system
+type: application
+version: 0.1.1
+appVersion: "1.0.0"
+maintainers:
+  - name: VKGRAG Team
+  - name: earayu
+    email: earayu@gmail.com

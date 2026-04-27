@@ -1,7 +1,7 @@
 """
-LightRAG Rerank Integration Example
+VKGRAG Rerank Integration Example
 
-This example demonstrates how to use rerank functionality with LightRAG
+This example demonstrates how to use rerank functionality with VKGRAG
 to improve retrieval quality across different query modes.
 
 Configuration Required:
@@ -26,13 +26,13 @@ import asyncio
 import os
 import numpy as np
 
-from lightrag import LightRAG, QueryParam
-from lightrag.llm.openai import openai_complete_if_cache, openai_embed
-from lightrag.utils import EmbeddingFunc, setup_logger
-from lightrag.kg.shared_storage import initialize_pipeline_status
+from vkgrag import VKGRAG, QueryParam
+from vkgrag.llm.openai import openai_complete_if_cache, openai_embed
+from vkgrag.utils import EmbeddingFunc, setup_logger
+from vkgrag.kg.shared_storage import initialize_pipeline_status
 
 from functools import partial
-from lightrag.rerank import cohere_rerank
+from vkgrag.rerank import cohere_rerank
 
 # Set up your working directory
 WORKING_DIR = "./test_rerank"
@@ -74,7 +74,7 @@ rerank_model_func = partial(
 
 
 async def create_rag_with_rerank():
-    """Create LightRAG instance with rerank configuration"""
+    """Create VKGRAG instance with rerank configuration"""
 
     # Get embedding dimension
     test_embedding = await embedding_func(["test"])
@@ -82,7 +82,7 @@ async def create_rag_with_rerank():
     print(f"Detected embedding dimension: {embedding_dim}")
 
     # Method 1: Using custom rerank function
-    rag = LightRAG(
+    rag = VKGRAG(
         working_dir=WORKING_DIR,
         llm_model_func=llm_model_func,
         embedding_func=EmbeddingFunc(
@@ -104,14 +104,14 @@ async def test_rerank_with_different_settings():
     """
     Test rerank functionality with different enable_rerank settings
     """
-    print("\n\n🚀 Setting up LightRAG with Rerank functionality...")
+    print("\n\n🚀 Setting up VKGRAG with Rerank functionality...")
 
     rag = await create_rag_with_rerank()
 
     # Insert sample documents
     sample_docs = [
         "Reranking improves retrieval quality by re-ordering documents based on relevance.",
-        "LightRAG is a powerful retrieval-augmented generation system with multiple query modes.",
+        "VKGRAG is a powerful retrieval-augmented generation system with multiple query modes.",
         "Vector databases enable efficient similarity search in high-dimensional embedding spaces.",
         "Natural language processing has evolved with large language models and transformers.",
         "Machine learning algorithms can learn patterns from data without explicit programming.",
@@ -168,7 +168,7 @@ async def test_direct_rerank():
 
     documents = [
         "Vector search finds semantically similar documents",
-        "LightRAG supports advanced reranking capabilities",
+        "VKGRAG supports advanced reranking capabilities",
         "Reranking significantly improves retrieval quality",
         "Natural language processing with modern transformers",
         "The quick brown fox jumps over the lazy dog",
@@ -200,7 +200,7 @@ async def test_direct_rerank():
 
 async def main():
     """Main example function"""
-    print("🎯 LightRAG Rerank Integration Example")
+    print("🎯 VKGRAG Rerank Integration Example")
     print("=" * 60)
 
     try:
@@ -214,7 +214,7 @@ async def main():
         print("\n💡 Key Points:")
         print("   ✓ Rerank is now controlled per query via 'enable_rerank' parameter")
         print("   ✓ Default value for enable_rerank is True")
-        print("   ✓ Rerank function is configured at LightRAG initialization")
+        print("   ✓ Rerank function is configured at VKGRAG initialization")
         print("   ✓ Per-query enable_rerank setting overrides default behavior")
         print(
             "   ✓ If enable_rerank=True but no rerank model is configured, a warning is issued"

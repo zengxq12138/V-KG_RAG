@@ -20,8 +20,8 @@ import sys
 
 sys.path.append(str(Path(__file__).parent.parent))
 
-from lightrag.llm.openai import openai_complete_if_cache, openai_embed
-from lightrag.utils import EmbeddingFunc, logger, set_verbose_debug
+from vkgrag.llm.openai import openai_complete_if_cache, openai_embed
+from vkgrag.utils import EmbeddingFunc, logger, set_verbose_debug
 from raganything import RAGAnything, RAGAnythingConfig
 
 
@@ -66,7 +66,7 @@ def configure_logging():
                 },
             },
             "loggers": {
-                "lightrag": {
+                "vkgrag": {
                     "handlers": ["console", "file"],
                     "level": "INFO",
                     "propagate": False,

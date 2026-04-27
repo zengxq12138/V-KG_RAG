@@ -1,4 +1,4 @@
 include requirements.txt
-include lightrag/api/requirements.txt
-recursive-include lightrag/api/webui *
-recursive-include lightrag/api/static *
+include vkgrag/api/requirements.txt
+recursive-include vkgrag/api/webui *
+recursive-include vkgrag/api/static *

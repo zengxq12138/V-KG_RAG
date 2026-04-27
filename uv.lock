@@ -2537,7 +2537,7 @@ wheels = [
 ]
 
 [[package]]
-name = "lightrag-hku"
+name = "vkgrag"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
@@ -2728,7 +2728,7 @@ requires-dist = [
     { name = "json-repair" },
     { name = "json-repair", marker = "extra == 'api'" },
     { name = "langfuse", marker = "extra == 'observability'", specifier = ">=3.8.1" },
-    { name = "lightrag-hku", extras = ["api", "offline-llm", "offline-storage"], marker = "extra == 'offline'" },
+    { name = "vkgrag", extras = ["api", "offline-llm", "offline-storage"], marker = "extra == 'offline'" },
     { name = "llama-index", marker = "extra == 'offline-llm'", specifier = ">=0.9.0,<1.0.0" },
     { name = "nano-vectordb" },
     { name = "nano-vectordb", marker = "extra == 'api'" },

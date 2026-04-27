@@ -1,15 +1,15 @@
 """
 Example of directly using modal processors
 
-This example demonstrates how to use LightRAG's modal processors directly without going through MinerU.
+This example demonstrates how to use VKGRAG's modal processors directly without going through MinerU.
 """
 
 import asyncio
 import argparse
-from lightrag.llm.openai import openai_complete_if_cache, openai_embed
-from lightrag.kg.shared_storage import initialize_pipeline_status
-from lightrag import LightRAG
-from lightrag.utils import EmbeddingFunc
+from vkgrag.llm.openai import openai_complete_if_cache, openai_embed
+from vkgrag.kg.shared_storage import initialize_pipeline_status
+from vkgrag import VKGRAG
+from vkgrag.utils import EmbeddingFunc
 from raganything.modalprocessors import (
     ImageModalProcessor,
     TableModalProcessor,
@@ -81,11 +81,11 @@ def get_vision_model_func(api_key: str, base_url: str = None):
     )
 
 
-async def process_image_example(lightrag: LightRAG, vision_model_func):
+async def process_image_example(vkgrag: VKGRAG, vision_model_func):
     """Example of processing an image"""
     # Create image processor
     image_processor = ImageModalProcessor(
-        lightrag=lightrag, modal_caption_func=vision_model_func
+        vkgrag=vkgrag, modal_caption_func=vision_model_func
     )
 
     # Prepare image content
@@ -108,11 +108,11 @@ async def process_image_example(lightrag: LightRAG, vision_model_func):
     print(f"Entity Info: {entity_info}")
 
 
-async def process_table_example(lightrag: LightRAG, llm_model_func):
+async def process_table_example(vkgrag: VKGRAG, llm_model_func):
     """Example of processing a table"""
     # Create table processor
     table_processor = TableModalProcessor(
-        lightrag=lightrag, modal_caption_func=llm_model_func
+        vkgrag=vkgrag, modal_caption_func=llm_model_func
     )
 
     # Prepare table content
@@ -140,11 +140,11 @@ async def process_table_example(lightrag: LightRAG, llm_model_func):
     print(f"Entity Info: {entity_info}")
 
 
-async def process_equation_example(lightrag: LightRAG, llm_model_func):
+async def process_equation_example(vkgrag: VKGRAG, llm_model_func):
     """Example of processing a mathematical equation"""
     # Create equation processor
     equation_processor = EquationModalProcessor(
-        lightrag=lightrag, modal_caption_func=llm_model_func
+        vkgrag=vkgrag, modal_caption_func=llm_model_func
     )
 
     # Prepare equation content
@@ -164,7 +164,7 @@ async def process_equation_example(lightrag: LightRAG, llm_model_func):
 
 
 async def initialize_rag(api_key: str, base_url: str = None):
-    rag = LightRAG(
+    rag = VKGRAG(
         working_dir=WORKING_DIR,
         embedding_func=EmbeddingFunc(
             embedding_dim=3072,
@@ -212,17 +212,17 @@ def main():
 
 
 async def main_async(api_key: str, base_url: str = None):
-    # Initialize LightRAG
-    lightrag = await initialize_rag(api_key, base_url)
+    # Initialize VKGRAG
+    vkgrag = await initialize_rag(api_key, base_url)
 
     # Get model functions
     llm_model_func = get_llm_model_func(api_key, base_url)
     vision_model_func = get_vision_model_func(api_key, base_url)
 
     # Run examples
-    await process_image_example(lightrag, vision_model_func)
-    await process_table_example(lightrag, llm_model_func)
-    await process_equation_example(lightrag, llm_model_func)
+    await process_image_example(vkgrag, vision_model_func)
+    await process_table_example(vkgrag, llm_model_func)
+    await process_equation_example(vkgrag, llm_model_func)
 
 
 if __name__ == "__main__":

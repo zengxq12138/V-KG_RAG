@@ -43,8 +43,8 @@ jobs:
 
       - name: Update version in __init__.py
         run: |
-          sed -i "s/__version__ = \".*\"/__version__ = \"${{ steps.get_tag.outputs.tag }}\"/" lightrag/__init__.py
-          cat lightrag/__init__.py | grep __version__
+          sed -i "s/__version__ = \".*\"/__version__ = \"${{ steps.get_tag.outputs.tag }}\"/" vkgrag/__init__.py
+          cat vkgrag/__init__.py | grep __version__
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

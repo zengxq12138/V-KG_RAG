@@ -11,7 +11,7 @@ This test verifies:
 import os
 import json
 import tempfile
-from lightrag.utils import write_json, load_json, SanitizingJSONEncoder
+from vkgrag.utils import write_json, load_json, SanitizingJSONEncoder
 
 
 class TestWriteJsonOptimization:

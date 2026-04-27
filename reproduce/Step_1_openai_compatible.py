@@ -4,14 +4,14 @@ import time
 import asyncio
 import numpy as np
 
-from lightrag import LightRAG
-from lightrag.utils import EmbeddingFunc
-from lightrag.llm.openai import openai_complete_if_cache, openai_embed
-from lightrag.kg.shared_storage import initialize_pipeline_status
+from vkgrag import VKGRAG
+from vkgrag.utils import EmbeddingFunc
+from vkgrag.llm.openai import openai_complete_if_cache, openai_embed
+from vkgrag.kg.shared_storage import initialize_pipeline_status
 
 
 ## For Upstage API
-# please check if embedding_dim=4096 in lightrag.py and llm.py in lightrag direcotry
+# please check if embedding_dim=4096 in vkgrag.py and llm.py in vkgrag direcotry
 async def llm_model_func(
     prompt, system_prompt=None, history_messages=[], **kwargs
 ) -> str:
@@ -64,7 +64,7 @@ if not os.path.exists(WORKING_DIR):
 
 
 async def initialize_rag():
-    rag = LightRAG(
+    rag = VKGRAG(
         working_dir=WORKING_DIR,
         llm_model_func=llm_model_func,
         embedding_func=EmbeddingFunc(embedding_dim=4096, func=embedding_func),

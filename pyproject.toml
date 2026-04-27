@@ -3,12 +3,12 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lightrag-hku"
+name = "vkgrag"
 dynamic = ["version"]
 authors = [
     {name = "Zirui Guo"}
 ]
-description = "LightRAG: Simple and Fast Retrieval-Augmented Generation"
+description = "VKGRAG: Simple and Fast Retrieval-Augmented Generation"
 readme = "README.md"
 license = {text = "MIT"}
 requires-python = ">=3.10"
@@ -121,7 +121,7 @@ offline-llm = [
 
 offline = [
     # Complete offline package (includes api for document processing, plus storage and LLM)
-    "lightrag-hku[api,offline-storage,offline-llm]",
+    "vkgrag[api,offline-storage,offline-llm]",
 ]
 
 evaluation = [
@@ -139,28 +139,28 @@ observability = [
 ]
 
 [project.scripts]
-lightrag-server = "lightrag.api.lightrag_server:main"
-lightrag-gunicorn = "lightrag.api.run_with_gunicorn:main"
-lightrag-download-cache = "lightrag.tools.download_cache:main"
+vkgrag-server = "vkgrag.api.vkgrag_server:main"
+vkgrag-gunicorn = "vkgrag.api.run_with_gunicorn:main"
+vkgrag-download-cache = "vkgrag.tools.download_cache:main"
 
 [project.urls]
-Homepage = "https://github.com/HKUDS/LightRAG"
-Documentation = "https://github.com/HKUDS/LightRAG"
-Repository = "https://github.com/HKUDS/LightRAG"
-"Bug Tracker" = "https://github.com/HKUDS/LightRAG/issues"
+Homepage = "https://github.com/HKUDS/VKGRAG"
+Documentation = "https://github.com/HKUDS/VKGRAG"
+Repository = "https://github.com/HKUDS/VKGRAG"
+"Bug Tracker" = "https://github.com/HKUDS/VKGRAG/issues"
 
 [tool.setuptools.packages.find]
-include = ["lightrag*"]
+include = ["vkgrag*"]
 exclude = ["data*", "tests*", "scripts*", "examples*", "dickens*", "reproduce*", "output_complete*", "rag_storage*", "inputs*"]
 
 [tool.setuptools]
 include-package-data = true
 
 [tool.setuptools.dynamic]
-version = {attr = "lightrag.__version__"}
+version = {attr = "vkgrag.__version__"}
 
 [tool.setuptools.package-data]
-lightrag = ["api/webui/**/*", "api/static/**/*"]
+vkgrag = ["api/webui/**/*", "api/static/**/*"]
 
 [tool.ruff]
 target-version = "py310"
